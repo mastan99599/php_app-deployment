@@ -1,0 +1,9 @@
+version: 0.2
+phases:
+  build:
+    commands:
+    
+      aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 975049953424.dkr.ecr.us-east-1.amazonaws.com
+      docker build -t php_app-dep .
+      docker tag php_app-dep:latest 975049953424.dkr.ecr.us-east-1.amazonaws.com/php_app-dep:latest
+      docker push 975049953424.dkr.ecr.us-east-1.amazonaws.com/php_app-dep:latest
